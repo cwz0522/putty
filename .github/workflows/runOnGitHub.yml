@@ -64,7 +64,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: windows/putty_AIO_binary.zip
-          asset_name: windows/putty_AIO_binary_${{ env.TAG }}.zip
+          asset_name: windows/putty_AIO_binary_${{ github.ref }}.zip
           asset_content_type: application/zip
 
           
