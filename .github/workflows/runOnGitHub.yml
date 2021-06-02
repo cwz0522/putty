@@ -39,7 +39,6 @@ jobs:
       - name: Build something requiring CL.EXE
         working-directory: ./windows
         run: |
-          cd ./windows
           dir
           nmake -f Makefile.vc
 
