@@ -37,9 +37,8 @@ jobs:
 # Enable Developer Command Prompt
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Build something requiring CL.EXE
+        working-directory: windows
         run: |
-          cd windows
-          dir
           nmake -f Makefile.vc
 
         # Example use of `signedReleaseFile` output -- not needed
