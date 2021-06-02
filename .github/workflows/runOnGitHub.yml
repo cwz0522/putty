@@ -42,12 +42,13 @@ jobs:
           cd windows
           dir
           nmake -f Makefile.vc
+          zip --junk-paths putty_AIO_binary p*.exe
 
         # Example use of `signedReleaseFile` output -- not needed
       - uses: actions/upload-artifact@v2
         with:
           name: upload-artifact
-          path: windows/*.exe
+          path: windows/putty_AIO_binary.zip
 
       - name: Get the tag name
         run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
@@ -60,21 +61,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.TAG }}
-          release_name: 自製實聯制掃描器 ${{ env.TAG }}
+          release_name: putty portable ${{ env.TAG }}
           draft: false
           prerelease: false
-
-      - name: Save name of our Artifact
-        id: set-result-artifact
-        run: |
-          #ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/apk/ourbuildtype/release/*.apk | head -n 1)
-          ARTIFACT_PATHNAME_APK=${{steps.sign_app.outputs.signedReleaseFile}}
-          ARTIFACT_NAME_APK="QRCodeFor1922_${{ env.TAG }}.apk"
-          #          echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
-          echo "ARTIFACT_NAME_APK is " ${ARTIFACT_NAME_APK}
-          echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
-          echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV
-        if: env.HEAD_TAG != ''
 
       - name: Upload our Artifact Assets
         id: upload-release-asset
@@ -83,8 +72,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
-          asset_name: ${{ env.ARTIFACT_NAME_APK }}
+          asset_path: windows/putty_AIO_binary.zip
+          asset_name: windows/putty_AIO_binary_${{ env.TAG }}.zip
           asset_content_type: application/zip
         if: env.HEAD_TAG != ''
 
