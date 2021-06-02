@@ -42,7 +42,7 @@ jobs:
           cd windows
           dir
           nmake -f Makefile.vc
-          zip --junk-paths putty_AIO_binary p*.exe
+          powershell Compress-Archive p*.exe putty_AIO_binary.zip
 
         # Example use of `signedReleaseFile` output -- not needed
       - uses: actions/upload-artifact@v2
