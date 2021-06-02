@@ -1,8 +1,8 @@
 https://jakub.kotrla.net/putty/
 
-* PuTTY for win32 storing configuration into file
+= PuTTY for win32 storing configuration into file =
 
-* Information
+==  Information ==
 
 PuTTY is a great free telnet/ssh client for Win32 and Unix platforms. It's just one "exe", no install, no extra dlls are required.
 So it can be run from floppy, usb flash disk etc.
@@ -15,7 +15,7 @@ I've rewritten small part of Pageant too, to be able to load list of stored sess
 If you find a bug related to storing/loading configuration or not present in original PuTTY feel free to e-mail it to jakub@kotrla.net.
 My modification to PuTTY is under same licence as PuTTY - you can do anything with it but at your own risk and without any warranty.
 
-* Documentation
+== Documentation ==
 
 This PuTTY stores its configuration (sessions, ssh host keys, random seed file path) to file instead of registry.
 Every session and ssh host key is stored in a separate file. Default paths are (where . represents executable directory):
