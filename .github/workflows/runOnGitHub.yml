@@ -38,6 +38,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Build something requiring CL.EXE
         run: |
+          cd windows
           nmake -f Makefile.vc
 
         # Example use of `signedReleaseFile` output -- not needed
