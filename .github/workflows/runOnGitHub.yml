@@ -37,9 +37,9 @@ jobs:
 # Enable Developer Command Prompt
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Build something requiring CL.EXE
-        working-directory: ./windows
         run: |
           perl mkfiles.pl
+          cd windows
           dir
           nmake -f Makefile.vc
 
