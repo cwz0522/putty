@@ -20,9 +20,9 @@ My modification to PuTTY is under same [licence as PuTTY](http://www.chiark.gree
 This PuTTY stores its configuration (sessions, ssh host keys, random seed file path) to file instead of registry.
 Every session and ssh host key is stored in a separate file. Default paths are (where . represents executable directory):
 
-    * ./sessions/packedSessionName
-    * ./sshhostkeys/packedHostName
-    * ./putty.rnd
+* ./sessions/packedSessionName
+* ./sshhostkeys/packedHostName
+* ./putty.rnd
 
 Path for saving configuration can be set via file putty.conf. Current working
 directory is searched first, if putty.conf is not found there, executable
