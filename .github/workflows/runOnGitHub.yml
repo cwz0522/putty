@@ -26,14 +26,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Check if Git tag exists
-        run: |
-          echo "HEAD_TAG=$(git tag --points-at HEAD)" >> $GITHUB_ENV
-
-      - name: Runs only if Git tag exists
-        run: echo "This runs because Git tag points at HEAD ..."
-        if: env.HEAD_TAG != ''
-
 # Enable Developer Command Prompt
       - uses: ilammy/msvc-dev-cmd@v1
       - name: Build something requiring CL.EXE
@@ -56,12 +48,11 @@ jobs:
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
-        if: env.HEAD_TAG != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.TAG }}
-          release_name: putty portable ${{ env.TAG }}
+          tag_name: ${{ github.ref }}
+          release_name: putty portable Release ${{ github.ref }}
           draft: false
           prerelease: false
 
@@ -75,6 +66,5 @@ jobs:
           asset_path: windows/putty_AIO_binary.zip
           asset_name: windows/putty_AIO_binary_${{ env.TAG }}.zip
           asset_content_type: application/zip
-        if: env.HEAD_TAG != ''
 
           
